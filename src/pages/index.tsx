@@ -10,7 +10,7 @@ const Home: React.FC = () => (
         </Head>
 
         <main>
-            <p>Template page</p>
+            <p>Template page123456</p>
         </main>
     </div>
 );
