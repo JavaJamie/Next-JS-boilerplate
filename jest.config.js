@@ -1,28 +1,18 @@
 module.exports = {
-    moduleFileExtensions: ['ts', 'tsx', 'js'],
-    testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|js?|tsx?|ts?)$',
-    globals: {
-        NODE_ENV: 'test'
-    },
-    snapshotSerializers: ['@emotion/jest/serializer'],
+    roots: ['<rootDir>'],
+    testEnvironment: 'jsdom',
+    moduleFileExtensions: ['ts', 'tsx', 'js', 'json', 'jsx'],
+    testPathIgnorePatterns: ['<rootDir>[/\\\\](node_modules|.next)[/\\\\]'],
+    transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(ts|tsx)$'],
     transform: {
-        '^.+\\.(j|t)sx?$': 'babel-jest'
+      '^.+\\.(ts|tsx)$': 'babel-jest',
     },
-    coveragePathIgnorePatterns: [
-        '/node_modules/',
-        'jest.setup.js',
-        '<rootDir>/configs/',
-        'jest.config.js',
-        '.json',
-        '.snap'
+    watchPlugins: [
+      'jest-watch-typeahead/filename',
+      'jest-watch-typeahead/testname',
     ],
-    setupFiles: ['<rootDir>/jest/jest.setup.js'],
-    setupFilesAfterEnv: ['<rootDir>/jest/jest.setupAfterEnv.js'],
-    coverageReporters: ['json', 'lcov', 'text', 'text-summary'],
     moduleNameMapper: {
-        '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-            '<rootDir>/__mocks__/mocks.js',
-        '\\.(css|less|scss)$': '<rootDir>/__mocks__/mocks.js'
-    },
-    moduleDirectories: ['node_modules', 'src']
-};
+      '\\.(css|less|sass|scss)$': 'identity-obj-proxy',
+      '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/test/__mocks__/fileMock.js',
+    }
+}
